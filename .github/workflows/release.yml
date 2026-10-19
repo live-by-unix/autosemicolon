@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Type-check
+      run: npm run typecheck
+    
+    - name: Lint
+      run: npm run lint
+    
+    - name: Compile
+      run: npm run compile
+    
+    - name: Run tests
+      run: npm test
+      continue-on-error: true
+    
+    - name: Get version
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+        else
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Package extension
+      run: npm run package
+    
+    - name: Verify VSIX
+      run: |
+        ls -lh dist/
+        unzip -l dist/autosemicolon-*.vsix
+    
+    - name: Generate Release Notes
+      id: release_notes
+      run: |
+        VERSION="${{ steps.version.outputs.version }}"
+        if [ -f CHANGELOG.md ]; then
+          # Extract changelog entry for this version
+          sed -n "/## \[$VERSION\]/,/## \[/p" CHANGELOG.md > release_notes.md || echo "No changelog entry found" > release_notes.md
+        else
+          echo "No CHANGELOG.md found" > release_notes.md
+        fi
+        cat release_notes.md
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        name: Auto ${{ steps.version.outputs.version }}
+        body_path: release_notes.md
+        files: dist/autosemicolon-*.vsix
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

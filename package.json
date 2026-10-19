@@ -1,0 +1,151 @@
+{
+  "name": "autosemicolon",
+  "displayName": "Auto",
+  "description": "Smart, automatic semicolon insertion for C-style programming languages. ",
+  "version": "1.0.0",
+  "publisher": "live-by-unix",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "semicolon",
+    "auto",
+    "formatter",
+    "c",
+    "cpp",
+    "csharp",
+    "javascript",
+    "typescript",
+    "java",
+    "php",
+    "rust",
+    "go",
+    "swift",
+    "objective-c"
+  ],
+  "activationEvents": [
+    "onLanguage:c",
+    "onLanguage:cpp",
+    "onLanguage:csharp",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:java",
+    "onLanguage:php",
+    "onLanguage:rust",
+    "onLanguage:go",
+    "onLanguage:swift",
+    "onLanguage:objective-c",
+    "onLanguage:objective-cpp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "auto.enable",
+        "title": "Auto: Enable"
+      },
+      {
+        "command": "auto.disable",
+        "title": "Auto: Disable"
+      },
+      {
+        "command": "auto.toggle",
+        "title": "Auto: Toggle"
+      },
+      {
+        "command": "auto.showStatus",
+        "title": "Auto: Show Status"
+      },
+      {
+        "command": "auto.openSettings",
+        "title": "Auto: Open Settings"
+      },
+      {
+        "command": "auto.showOutputLog",
+        "title": "Auto: Show Output Log"
+      }
+    ],
+    "configuration": {
+      "title": "Auto",
+      "properties": {
+        "auto.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Master enable/disable switch for Auto"
+        },
+        "auto.enabledLanguages": {
+          "type": "array",
+          "default": [],
+          "description": "Language identifiers for which Auto is enabled. Empty array means all supported languages are enabled.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "auto.disabledLanguages": {
+          "type": "array",
+          "default": [],
+          "description": "Language identifiers explicitly excluded by the user.",
+          "items": {
+            "type": "string"
+          }
+        },
+
+        "auto.debugLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable detailed diagnostic logging in the Output channel"
+        },
+        "auto.insertOnNewline": {
+          "type": "boolean",
+          "default": true,
+          "description": "Insert semicolon when a confidently completed statement is finalized by moving to a new line"
+        },
+        "auto.insertOnClosingDelimiter": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable safe detection of completed statements after relevant closing delimiters (parentheses, brackets)"
+        }
+      }
+    }
+  },
+  "icon": "assets/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/live-by-unix/autosemicolon"
+  },
+  "bugs": {
+    "url": "https://github.com/live-by-unix/autosemicolon/issues"
+  },
+  "homepage": "https://github.com/live-by-unix/autosemicolon#readme",
+  "license": "MIT",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "compile:test": "tsc -p ./tsconfig.test.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run compile:test && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package --out dist/autosemicolon-1.0.0.vsix",
+    "clean": "rm -rf out dist",
+    "version": "echo \"$(node -p \"require('./package.json').version\")\""
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.96.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.1",
+    "eslint": "^8.57.0",
+    "typescript": "^5.7.2"
+  }
+}
