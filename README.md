@@ -49,7 +49,7 @@ code --install-extension autosemicolon-1.0.0.vsix
 
 ### From VS Code Marketplace
 
-Search for "Auto" by live-by-unix in the VS Code Extensions marketplace.
+Search for "autosemicolon" by live-by-unix in the VS Code Extensions marketplace.
 
 ## How It Works
 
