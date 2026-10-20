@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="Auto — smart, automatic semicolon insertion for C-style programming languages in VS Code. Local, private, and configurable.">
+  <title>Auto — Semicolons, handled.</title>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/microsoft/vscode@main/resources/linux/code.png">
+  <style>
+    :root{color-scheme:dark;--bg:#0b0d12;--panel:#11141c;--panel2:#151a24;--line:#272d3a;--text:#f4f6fb;--muted:#9ba5b7;--blue:#75a7ff;--cyan:#79e0d0;--purple:#b6a0ff;--green:#7ee0a3;--red:#ff9b9b;--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#192747 0,transparent 52%),var(--bg);color:var(--text);font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff10;position:sticky;top:0;background:#0b0d12e8;backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.7px}.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,#8ab8ff,#7e8cff);display:grid;place-items:center;color:#101624;font-weight:900;font-size:19px;box-shadow:0 5px 24px #6c91ff35}.navlinks{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:13px}.navlinks a:hover{color:white}.navcta,.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 16px;border-radius:11px;background:var(--text);color:#10131a;font-weight:750;border:1px solid transparent;transition:.2s}.navcta:hover,.button:hover{transform:translateY(-2px);box-shadow:0 8px 25px #ffffff14}.button.secondary{background:#ffffff06;color:var(--text);border-color:var(--line)}.button.blue{background:var(--blue);color:#0b1426}.hero{padding:92px 0 72px;text-align:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #394761;background:#141d2d;color:#c3d6ff;border-radius:99px;padding:6px 12px;font-size:12px;font-weight:700}.dot{height:7px;width:7px;background:var(--green);border-radius:50%;box-shadow:0 0 12px #7ee0a3}.hero h1{font-size:clamp(48px,8vw,88px);line-height:1.01;letter-spacing:-5px;margin:25px auto 20px;max-width:900px}.gradient{background:linear-gradient(100deg,#fff 10%,#a9c6ff 50%,#86e8d7 90%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:660px;margin:0 auto;color:var(--muted);font-size:18px}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:29px}.trust{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;color:#aab4c5;font-size:12px;margin-top:24px}.trust span{display:flex;align-items:center;gap:7px}.trust b{color:var(--green)}.editor{max-width:810px;margin:44px auto 0;text-align:left;border:1px solid #31394a;border-radius:16px;overflow:hidden;background:#0c0f15;box-shadow:0 30px 100px #0008}.editorbar{height:44px;background:#171b25;border-bottom:1px solid #2a303e;display:flex;align-items:center;padding:0 15px;gap:7px}.traffic{width:8px;height:8px;border-radius:50%;background:#5b6372}.filename{font:12px ui-monospace,monospace;color:#aab4c5;margin-left:9px}.live{margin-left:auto;color:var(--green);font-size:11px}.codegrid{display:grid;grid-template-columns:1fr 1fr}.codepane{padding:18px 19px 20px;min-width:0}.codepane+ .codepane{border-left:1px solid #252b37;background:#10151d}.codetitle{font-size:11px;color:#9ba5b7;text-transform:uppercase;letter-spacing:1.2px;font-weight:800;margin-bottom:14px;display:flex;justify-content:space-between}.codetitle .ok{color:var(--green)}pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.95 ui-monospace,SFMono-Regular,Menlo,monospace;color:#d7deea}.kw{color:#c6a8ff}.fn{color:#8dc7ff}.str{color:#a6e3a1}.num{color:#ffcb8b}.added{color:var(--green);background:#17342780;border-radius:4px;padding:1px 3px}.section{padding:75px 0}.sectionhead{text-align:center;max-width:670px;margin:0 auto 35px}.kicker{font-size:11px;letter-spacing:1.7px;text-transform:uppercase;color:var(--blue);font-weight:850}.section h2{font-size:clamp(30px,4vw,46px);line-height:1.15;letter-spacing:-1.8px;margin:10px 0 13px}.sectionhead p,.muted{color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);background:linear-gradient(145deg,#141923,#10131a);border-radius:var(--radius);padding:23px}.iconbox{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#202c42;color:var(--blue);font-size:20px;margin-bottom:16px}.card h3{margin:0 0 8px;font-size:17px;letter-spacing:-.3px}.card p{margin:0;color:var(--muted);font-size:13px}.split{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:stretch}.panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:24px}.panel h3{margin:0 0 8px;font-size:20px}.panel>p{color:var(--muted);font-size:13px;margin-top:0}.language-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.lang{padding:14px;border:1px solid var(--line);border-radius:12px;background:#ffffff03}.lang strong{display:block;font-size:13px}.lang small{color:var(--muted);font-size:11px}.pill{display:inline-flex;border-radius:99px;padding:3px 8px;font-size:10px;font-weight:800;margin-top:7px;background:#1c3328;color:var(--green)}.pill.partial{background:#2c2740;color:#c6b5ff}.pill.off{background:#292d35;color:#aab4c5}.settinglist{display:grid;gap:0}.setting{padding:15px 0;border-bottom:1px solid var(--line)}.setting:last-child{border:0}.setting code{color:#a9c5ff;font-size:12px}.setting p{margin:5px 0 0;color:var(--muted);font-size:12px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:step}.step{counter-increment:step;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:22px}.stepnum{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#202c42;color:var(--blue);font-weight:800;margin-bottom:14px}.step h3{margin:0 0 7px}.step p{margin:0;color:var(--muted);font-size:13px}.step code{color:#c8d8ff}.command{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);background:#080a0f;border-radius:12px;padding:12px 14px;margin-top:15px}.command code{font:12px ui-monospace,monospace;color:#d5dff0;overflow-wrap:anywhere}.copy{border:1px solid #394152;border-radius:8px;background:#1a202b;color:#eaf0fa;padding:7px 10px;font-size:11px;flex-shrink:0}.copy:hover{background:#26334a}.faq{max-width:800px;margin:auto}.faq details{border-bottom:1px solid var(--line);padding:17px 0}.faq summary{cursor:pointer;font-weight:700}.faq details p{color:var(--muted);font-size:13px;margin-bottom:0}.callout{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:32px;border:1px solid #394765;background:linear-gradient(115deg,#18243a,#151d2a);border-radius:22px}.callout h2{font-size:30px;margin:0 0 8px;letter-spacing:-1px}.callout p{margin:0;color:var(--muted)}footer{border-top:1px solid var(--line);padding:28px 0;margin-top:70px;color:var(--muted);font-size:12px}.footrow{display:flex;align-items:center;justify-content:space-between;gap:20px}.footlinks{display:flex;gap:18px;flex-wrap:wrap}.footlinks a:hover{color:white}.notice{font-size:11px;color:#8994a7;margin-top:16px}.mobilemenu{display:none}
+    @media(max-width:760px){.navlinks{gap:12px}.navlinks a:not(.navcta){display:none}.hero{padding-top:65px}.hero h1{letter-spacing:-2.8px}.hero p{font-size:16px}.codegrid,.split{grid-template-columns:1fr}.codepane+.codepane{border-left:0;border-top:1px solid #252b37}.cards,.steps{grid-template-columns:1fr}.language-grid{grid-template-columns:repeat(2,1fr)}.section{padding:54px 0}.callout,.footrow{align-items:flex-start;flex-direction:column}.callout{padding:24px}.wrap{width:min(100% - 28px,1120px)}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+    <a class="brand" href="#top" aria-label="Auto home"><span class="logo">;</span> Auto</a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#features">Features</a><a href="#languages">Languages</a><a href="#settings">Settings</a><a href="#install">Install</a>
+      <a class="navcta" href="https://marketplace.visualstudio.com/items?itemName=live-by-unix.autosemicolon" target="_blank" rel="noopener">Get Auto ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero wrap">
+    <div class="eyebrow"><span class="dot"></span> A smarter semicolon workflow for VS Code</div>
+    <h1>Semicolons,<br><span class="gradient">handled.</span></h1>
+    <p>Write code naturally. Auto detects when a statement is complete and inserts the semicolon for you—right in your editor, with no AI, network calls, or extra dependencies.</p>
+    <div class="actions">
+      <a class="button blue" href="https://marketplace.visualstudio.com/items?itemName=live-by-unix.autosemicolon" target="_blank" rel="noopener">↗ Install from Marketplace</a>
+      <a class="button secondary" href="https://github.com/live-by-unix/autosemicolon" target="_blank" rel="noopener">View source on GitHub ↗</a>
+    </div>
+    <div class="trust"><span><b>✓</b> Works locally</span><span><b>✓</b> No telemetry</span><span><b>✓</b> Configurable</span><span><b>✓</b> Open source · MIT</span></div>
+    <div class="editor" aria-label="Illustration showing automatic semicolon insertion">
+      <div class="editorbar"><span class="traffic"></span><span class="traffic"></span><span class="traffic"></span><span class="filename">example.c — Auto preview</span><span class="live">● DEMO</span></div>
+      <div class="codegrid">
+        <div class="codepane"><div class="codetitle">You type <span>Before</span></div><pre><span class="kw">int</span> health = <span class="num">100</span>
+
+<span class="fn">printf</span>(<span class="str">"Ready to play"</span>)
+
+health = health - <span class="num">10</span></pre></div>
+        <div class="codepane"><div class="codetitle">Auto helps <span class="ok">✓ After</span></div><pre><span class="kw">int</span> health = <span class="num">100</span><span class="added">;</span>
+
+<span class="fn">printf</span>(<span class="str">"Ready to play"</span>)<span class="added">;</span>
+
+health = health - <span class="num">10</span><span class="added">;</span></pre></div>
+      </div>
+    </div>
+    <p class="notice">Illustrative preview. Actual insertion depends on the language, editor context, and confidence settings.</p>
+  </section>
+
+  <section class="section wrap" id="features">
+    <div class="sectionhead"><div class="kicker">Built for your flow</div><h2>Less punctuation. More programming.</h2><p>Auto stays out of your way and only acts when its statement analysis is confident enough.</p></div>
+    <div class="cards">
+      <article class="card"><div class="iconbox">⌁</div><h3>Automatic insertion</h3><p>Detects likely statement endings as you type and when you move to a new line. No special key or command required.</p></article>
+      <article class="card"><div class="iconbox">⌘</div><h3>Language-aware</h3><p>Uses language-specific handling to avoid common false positives around declarations, control structures, comments, and incomplete code.</p></article>
+      <article class="card"><div class="iconbox">◉</div><h3>Confidence-based</h3><p>Choose Conservative or Balanced behavior. Favor fewer incorrect insertions or allow more situations to be handled automatically.</p></article>
+      <article class="card"><div class="iconbox">⚙</div><h3>Configurable</h3><p>Enable or disable individual languages, choose insertion triggers, and inspect status or diagnostic output.</p></article>
+      <article class="card"><div class="iconbox">⌁</div><h3>Offline by design</h3><p>Runs locally without AI inference, API keys, external services, or network requests during editing.</p></article>
+      <article class="card"><div class="iconbox">◇</div><h3>Privacy-focused</h3><p>No telemetry or analytics. Your source code stays on your computer while Auto does its work.</p></article>
+    </div>
+  </section>
+
+  <section class="section wrap" id="languages">
+    <div class="sectionhead"><div class="kicker">Language support</div><h2>Made for C-style code.</h2><p>Support varies by language. Some languages have their own statement-ending rules, so automatic insertion is disabled by default where appropriate.</p></div>
+    <div class="panel">
+      <div class="language-grid">
+        <div class="lang"><strong>C</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+        <div class="lang"><strong>C++</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+        <div class="lang"><strong>C#</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+        <div class="lang"><strong>JavaScript</strong><small>Partial support · ASI</small><br><span class="pill partial">Conservative</span></div>
+        <div class="lang"><strong>TypeScript</strong><small>Partial support · ASI</small><br><span class="pill partial">Conservative</span></div>
+        <div class="lang"><strong>Java</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+        <div class="lang"><strong>PHP</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+        <div class="lang"><strong>Rust</strong><small>Partial support</small><br><span class="pill off">Disabled by default</span></div>
+        <div class="lang"><strong>Go</strong><small>Language inserts semicolons lexically</small><br><span class="pill off">Disabled</span></div>
+        <div class="lang"><strong>Swift</strong><small>Semicolons usually optional</small><br><span class="pill off">Disabled</span></div>
+        <div class="lang"><strong>Objective-C</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+        <div class="lang"><strong>Objective-C++</strong><small>Full support</small><br><span class="pill">Enabled by default</span></div>
+      </div>
+      <p class="notice">“Full” and “Partial” describe the extension's stated support level, not a guarantee that every syntax pattern will be detected correctly.</p>
+    </div>
+  </section>
+
+  <section class="section wrap" id="settings">
+    <div class="sectionhead"><div class="kicker">Make it yours</div><h2>Simple settings. Your rules.</h2><p>Configure Auto from VS Code Settings (<code>Ctrl+,</code> or <code>Cmd+,</code>) or edit your <code>settings.json</code>.</p></div>
+    <div class="split">
+      <div class="panel">
+        <h3>Core settings</h3>
+        <div class="setting"><code>auto.enabled</code><p>Boolean · Default: <strong>true</strong><br>Master switch for Auto.</p></div>
+        <div class="setting"><code>auto.enabledLanguages</code><p>String array · Default: <code>[]</code><br>Limit Auto to specific language identifiers. Empty means all supported languages are eligible.</p></div>
+        <div class="setting"><code>auto.disabledLanguages</code><p>String array · Default: <code>[]</code><br>Explicitly exclude languages such as JavaScript or TypeScript.</p></div>
+        <div class="setting"><code>auto.confidenceMode</code><p><code>"conservative"</code> (default) or <code>"balanced"</code>.</p></div>
+      </div>
+      <div class="panel">
+        <h3>Insertion & diagnostics</h3>
+        <div class="setting"><code>auto.insertOnNewline</code><p>Boolean · Default: <strong>true</strong><br>Insert when a completed statement is finalized by moving to a new line.</p></div>
+        <div class="setting"><code>auto.insertOnClosingDelimiter</code><p>Boolean · Default: <strong>false</strong><br>Try detecting completed statements after relevant closing delimiters.</p></div>
+        <div class="setting"><code>auto.debugLogging</code><p>Boolean · Default: <strong>false</strong><br>Show detailed diagnostics in the Output channel.</p></div>
+        <button class="button secondary" id="copySettings" style="margin-top:18px">Copy example settings</button>
+      </div>
+    </div>
+    <div class="command"><code id="settingsCode">{"auto.confidenceMode":"conservative","auto.insertOnNewline":true}</code><button class="copy" data-copy="settingsCode">Copy</button></div>
+  </section>
+
+  <section class="section wrap" id="install">
+    <div class="sectionhead"><div class="kicker">Get started</div><h2>Up and running in minutes.</h2><p>Install Auto into VS Code and keep coding the way you already do.</p></div>
+    <div class="steps">
+      <article class="step"><div class="stepnum">1</div><h3>Install Auto</h3><p>Open the Marketplace listing, then choose Install—or install a downloaded VSIX package.</p><div class="command"><code>code --install-extension autosemicolon-1.0.0.vsix</code><button class="copy" data-copy-text="code --install-extension autosemicolon-1.0.0.vsix">Copy</button></div></article>
+      <article class="step"><div class="stepnum">2</div><h3>Write code normally</h3><p>Type a statement and continue naturally. Auto analyzes edits and only inserts when it considers the statement complete.</p></article>
+      <article class="step"><div class="stepnum">3</div><h3>Tune your setup</h3><p>Use the Command Palette for <code>Auto: Show Status</code>, <code>Auto: Open Settings</code>, or <code>Auto: Show Output Log</code>.</p></article>
+    </div>
+    <p class="notice">For the VSIX method, download the latest release from <a style="color:var(--blue)" href="https://github.com/live-by-unix/autosemicolon/releases" target="_blank" rel="noopener">GitHub Releases ↗</a>. The example filename above reflects version 1.0.0 and may differ from the latest release.</p>
+  </section>
+
+  <section class="section wrap" id="troubleshooting">
+    <div class="sectionhead"><div class="kicker">Help & troubleshooting</div><h2>Questions? Start here.</h2></div>
+    <div class="faq">
+      <details><summary>Auto isn't inserting semicolons.</summary><p>Run <code>Auto: Show Status</code>, confirm Auto is enabled, and check that your language is supported and not listed in <code>auto.disabledLanguages</code>. If needed, try Balanced mode and enable <code>auto.debugLogging</code> to inspect the Output channel.</p></details>
+      <details><summary>Auto inserts semicolons where I don't want them.</summary><p>Use <code>"conservative"</code> for <code>auto.confidenceMode</code>, or exclude the affected language through <code>auto.disabledLanguages</code>. Report a reproducible example on <a href="https://github.com/live-by-unix/autosemicolon/issues" style="color:var(--blue)" target="_blank" rel="noopener">GitHub Issues ↗</a>.</p></details>
+      <details><summary>Does Auto send my code anywhere?</summary><p>According to the extension's stated privacy design, editing is processed locally with no network requests, telemetry, analytics, AI inference, or external services. See <a href="https://github.com/live-by-unix/autosemicolon" style="color:var(--blue)" target="_blank" rel="noopener">the project repository</a> and its <code>PRIVACY.md</code> for details.</p></details>
+      <details><summary>Why are Go and Swift disabled?</summary><p>Go uses lexical semicolon insertion, while Swift generally doesn't require semicolons. Auto disables these languages by default to avoid fighting their normal language behavior.</p></details>
+      <details><summary>Are all code patterns guaranteed to work?</summary><p>No. JavaScript and TypeScript have automatic semicolon insertion rules; Rust expressions can be valid without semicolons; and complex macros, C++ templates, or nested strings can be difficult to classify. Auto uses confidence thresholds to reduce mistakes, not eliminate every edge case.</p></details>
+      <details><summary>Where can I report a bug or contribute?</summary><p>Report issues at <a href="https://github.com/live-by-unix/autosemicolon/issues" style="color:var(--blue)" target="_blank" rel="noopener">GitHub Issues</a>, join <a href="https://github.com/live-by-unix/autosemicolon/discussions" style="color:var(--blue)" target="_blank" rel="noopener">Discussions</a>, and see <code>DEVELOPMENT.md</code>, <code>CONTRIBUTING.md</code>, and <code>SECURITY.md</code> in the repository.</p></details>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="callout">
+      <div><h2>Your code. Your flow.</h2><p>Try Auto in VS Code and spend less time on punctuation.</p></div>
+      <a class="button blue" href="https://marketplace.visualstudio.com/items?itemName=live-by-unix.autosemicolon" target="_blank" rel="noopener">Get Auto ↗</a>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap footrow">
+  <a class="brand" href="#top"><span class="logo">;</span> Auto</a>
+  <div class="footlinks"><a href="https://marketplace.visualstudio.com/items?itemName=live-by-unix.autosemicolon" target="_blank" rel="noopener">Marketplace</a><a href="https://github.com/live-by-unix/autosemicolon" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/live-by-unix/autosemicolon/releases" target="_blank" rel="noopener">Releases</a><a href="https://github.com/live-by-unix/autosemicolon/issues" target="_blank" rel="noopener">Issues</a></div>
+  <div>Made with ♥ by <a href="https://github.com/live-by-unix" target="_blank" rel="noopener" style="color:#dce5f5">live-by-unix</a></div>
+</div><div class="wrap notice">Auto is an independent open-source extension. This is a project demo site; it does not install or run the extension in your browser. MIT License · Copyright © 2025 live-by-unix.</div></footer>
+<script>
+  const settings = {
+    "auto.enabled": true,
+    "auto.enabledLanguages": ["c", "cpp", "csharp"],
+    "auto.disabledLanguages": [],
+    "auto.confidenceMode": "conservative",
+    "auto.debugLogging": false,
+    "auto.insertOnNewline": true,
+    "auto.insertOnClosingDelimiter": false
+  };
+  document.querySelectorAll("[data-copy]").forEach(button => {
+    button.addEventListener("click", async () => {
+      const text = document.getElementById(button.dataset.copy).textContent;
+      await copyText(text, button);
+    });
+  });
+  document.querySelectorAll("[data-copy-text]").forEach(button => {
+    button.addEventListener("click", async () => await copyText(button.dataset.copyText, button));
+  });
+  document.getElementById("copySettings").addEventListener("click", async event => {
+    await copyText(JSON.stringify(settings, null, 2), event.currentTarget);
+  });
+  async function copyText(text, button) {
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      button.textContent = "Copied ✓";
+    } catch {
+      const area = document.createElement("textarea");
+      area.value = text; area.style.position = "fixed"; area.style.opacity = "0";
+      document.body.appendChild(area); area.select();
+      const success = document.execCommand("copy"); area.remove();
+      button.textContent = success ? "Copied ✓" : "Select & copy";
+    }
+    setTimeout(() => button.textContent = original, 1500);
+  }
+</script>
+</body>
+</html>
